@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  turbopack: {},
 
-const nextConfig: NextConfig = {
-  /* config options here */
+  allowedDevOrigins: [
+    "192.168.1.104",
+    "http://192.168.1.104:3000"
+  ],
 };
 
-export default nextConfig;
+module.exports = nextConfig;
