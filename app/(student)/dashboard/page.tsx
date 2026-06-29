@@ -6,13 +6,13 @@ import {
   Clock,
   BookOpen,
   Target,
-  MoreVertical,
   ArrowUpRight,
-  Download,
   Calendar,
   CheckCircle2,
   Check,
-  Play
+  Play,
+  ChevronRight,
+  ChevronLeft
 } from "lucide-react";
 import StudyChart from "@/components/StudyChart/StudyChart";
 
@@ -21,6 +21,16 @@ export default function StudentDashboardPage() {
   const persianYear = new Intl.DateTimeFormat("fa-IR", {
     year: "numeric",
   }).format(date);
+
+  // داده‌های نمونه برای تایم‌لاین
+  const timelineData = [
+    { id: 1, date: "مهر ۱۴۰۲", title: "شروع سال تحصیلی", desc: "آزمون تعیین سطح و برنامه‌ریزی", status: "completed" },
+    { id: 2, date: "آذر ۱۴۰۲", title: "آزمون جامع اول", desc: "کسب تراز ۶۵۰۰", status: "completed" },
+    { id: 3, date: "دی ۱۴۰۲", title: "امتحانات ترم اول", desc: "معدل ۱۹.۵ در امتحانات نهایی", status: "completed" },
+    { id: 4, date: "اسفند ۱۴۰۲", title: "اردوی مطالعاتی عید", desc: "جمع‌بندی دروس پایه", status: "active" },
+    { id: 5, date: "خرداد ۱۴۰۳", title: "امتحانات نهایی", desc: "آمادگی برای کسب معدل ۲۰", status: "upcoming" },
+    { id: 6, date: "تیر ۱۴۰۳", title: "کنکور سراسری", desc: "آزمون اصلی", status: "upcoming" },
+  ];
 
   return (
     <div
@@ -79,8 +89,8 @@ export default function StudentDashboardPage() {
         />
       </div>
 
-      {/* Complex Data Section - Now 3 Columns (5-4-3 layout on large screens) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* Complex Data Section - 3 Columns (5-4-3 layout) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
         
         {/* Column 1: Study Chart (Takes 5 columns width) */}
         <div className="lg:col-span-5 p-7 bg-white border border-zinc-100 rounded-3xl shadow-sm h-[420px] flex flex-col">
@@ -118,7 +128,7 @@ export default function StudentDashboardPage() {
           </div>
         </div>
 
-        {/* Column 3: NEW Focus Timer Widget (Takes 3 columns width) */}
+        {/* Column 3: Focus Timer Widget (Takes 3 columns width) */}
         <div className="lg:col-span-3 bg-white border border-zinc-100 rounded-3xl p-7 shadow-sm flex flex-col items-center justify-center h-[420px] relative overflow-hidden">
           <div className="w-full text-right mb-6">
              <h2 className="text-lg font-bold text-zinc-900">تایمر تمرکز</h2>
@@ -126,7 +136,6 @@ export default function StudentDashboardPage() {
           </div>
           
           <div className="relative w-40 h-40 flex items-center justify-center mb-8">
-            {/* SVG Circular Progress */}
             <svg className="w-full h-full transform -rotate-90 absolute" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="45" fill="none" stroke="#f4f4f5" strokeWidth="6" />
               <circle 
@@ -152,12 +161,46 @@ export default function StudentDashboardPage() {
             <span className="font-bold text-sm">شروع تمرکز</span>
           </button>
         </div>
-
       </div>
 
+      {/* NEW: Timeline Section */}
+      <div className="bg-white border border-zinc-100 rounded-3xl p-7 shadow-sm w-full">
+        <div className="flex items-center justify-between mb-12">
+          <h2 className="text-lg font-bold text-zinc-900">مسیر پیشرفت تحصیلی</h2>
+          <div className="flex gap-2">
+            <button className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 transition-colors">
+              <ChevronRight className="w-4 h-4" />
+            </button>
+            <button className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 transition-colors">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Timeline Scrollable Wrapper */}
+        <div className="w-full overflow-x-auto custom-scrollbar pb-8 pt-4">
+          <div className="relative min-w-[900px] flex items-center justify-between px-8">
+            
+            {/* The main continuous horizontal line */}
+            <div className="absolute left-8 right-8 top-1/2 -translate-y-1/2 h-[2px] bg-zinc-100 z-0"></div>
+
+            {/* Timeline Nodes */}
+            {timelineData.map((item, index) => (
+              <TimelineNode 
+                key={item.id}
+                position={index % 2 === 0 ? "top" : "bottom"} 
+                {...item} 
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Global Styles */}
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
+          width: 6px;
+          height: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
           background: transparent;
@@ -215,9 +258,9 @@ function TaskItem({
   type: "urgent" | "meeting" | "routine";
 }) {
   const styles = {
-    urgent: { border: "border-rose-100", dot: "bg-rose-500", shadow: "shadow-rose-500/40", hoverBtn: "text-rose-500 hover:bg-rose-50" },
-    meeting: { border: "border-indigo-100", dot: "bg-indigo-500", shadow: "shadow-indigo-500/40", hoverBtn: "text-indigo-500 hover:bg-indigo-50" },
-    routine: { border: "border-zinc-200", dot: "bg-zinc-400", shadow: "shadow-zinc-400/40", hoverBtn: "text-zinc-600 hover:bg-zinc-100" },
+    urgent: { border: "border-rose-100", dot: "bg-rose-500", hoverBtn: "text-rose-500 hover:bg-rose-50" },
+    meeting: { border: "border-indigo-100", dot: "bg-indigo-500", hoverBtn: "text-indigo-500 hover:bg-indigo-50" },
+    routine: { border: "border-zinc-200", dot: "bg-zinc-400", hoverBtn: "text-zinc-600 hover:bg-zinc-100" },
   };
 
   return (
@@ -240,11 +283,54 @@ function TaskItem({
           </div>
         </div>
       </div>
-      
-      {/* Hover Action Button */}
       <button className={`opacity-0 group-hover:opacity-100 transition-opacity p-2 rounded-xl ${styles[type].hoverBtn}`}>
         <Check className="w-4 h-4" />
       </button>
+    </div>
+  );
+}
+
+// --- NEW Component: Timeline Node ---
+function TimelineNode({ position, date, title, desc, status }: any) {
+  const isTop = position === "top";
+  
+  // استایل‌دهی بر اساس وضعیت (انجام شده، در جریان، آینده)
+  const statusStyles = {
+    completed: { node: "bg-emerald-500 border-white", line: "bg-emerald-200", cardBorder: "hover:border-emerald-200" },
+    active: { node: "bg-indigo-600 border-white ring-4 ring-indigo-50", line: "bg-indigo-200", cardBorder: "border-indigo-100 shadow-sm" },
+    upcoming: { node: "bg-zinc-300 border-white", line: "bg-zinc-200", cardBorder: "hover:border-zinc-200" }
+  };
+
+  const currentStyle = statusStyles[status as keyof typeof statusStyles];
+
+  return (
+    <div className="relative z-10 flex flex-col items-center group w-40">
+      
+      {/* Content Card (Top) */}
+      {isTop && (
+        <div className={`mb-8 bg-white border border-zinc-100 p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-md w-full relative z-20 ${currentStyle.cardBorder}`}>
+          <span className="inline-block px-2 py-1 bg-zinc-50 rounded-md text-[10px] font-bold text-zinc-500 mb-2">{date}</span>
+          <h4 className="text-sm font-bold text-zinc-800 leading-tight">{title}</h4>
+          <p className="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">{desc}</p>
+          {/* Connector Line */}
+          <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-[2px] h-8 ${currentStyle.line} -z-10 transition-colors`}></div>
+        </div>
+      )}
+
+      {/* Center Node (Dot) */}
+      <div className={`w-5 h-5 rounded-full border-[3px] shadow-sm flex items-center justify-center z-20 transition-transform group-hover:scale-125 ${currentStyle.node}`}></div>
+
+      {/* Content Card (Bottom) */}
+      {!isTop && (
+        <div className={`mt-8 bg-white border border-zinc-100 p-4 rounded-2xl transition-all duration-300 hover:translate-y-1 hover:shadow-md w-full relative z-20 ${currentStyle.cardBorder}`}>
+          {/* Connector Line */}
+          <div className={`absolute -top-8 left-1/2 -translate-x-1/2 w-[2px] h-8 ${currentStyle.line} -z-10 transition-colors`}></div>
+          <span className="inline-block px-2 py-1 bg-zinc-50 rounded-md text-[10px] font-bold text-zinc-500 mb-2">{date}</span>
+          <h4 className="text-sm font-bold text-zinc-800 leading-tight">{title}</h4>
+          <p className="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">{desc}</p>
+        </div>
+      )}
+      
     </div>
   );
 }
