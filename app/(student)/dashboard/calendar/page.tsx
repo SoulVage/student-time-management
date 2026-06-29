@@ -1,14 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import {
-  ChevronRight,
-  ChevronLeft,
-  HelpCircle,
-  Settings,
-} from "lucide-react";
-// ایمپورت کامپوننت مدال (آدرس رو چک کن که درست باشه)
+import { ChevronRight, ChevronLeft, HelpCircle, Settings } from "lucide-react";
 import StudyLogModal from "@/components/StudyLogModal/StudyLogModal"; 
 
 type TaskType = "exam" | "study" | "class";
@@ -30,21 +23,13 @@ const mockTasks: Record<number, Task[]> = {
   25: [{ id: "5", title: "آزمون شبیه‌ساز کنکور", type: "exam", time: "08:00" }],
 };
 
-const weekDays = [
-  "شنبه",
-  "یک‌شنبه",
-  "دوشنبه",
-  "سه‌شنبه",
-  "چهارشنبه",
-  "پنج‌شنبه",
-  "جمعه",
-];
+const weekDays = ["شنبه", "یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه"];
 
 export default function StudentCalendar() {
   const [realToday, setRealToday] = useState<Date | null>(null);
   const [viewDate, setViewDate] = useState<Date | null>(null);
   
-  // --- استیت‌های مربوط به مدال ---
+  // استیت‌های مدال
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDateForModal, setSelectedDateForModal] = useState("");
 
@@ -70,10 +55,7 @@ export default function StudentCalendar() {
   };
 
   const getMonthYearFa = (d: Date) => {
-    const f = new Intl.DateTimeFormat("fa-IR", {
-      month: "long",
-      year: "numeric",
-    });
+    const f = new Intl.DateTimeFormat("fa-IR", { month: "long", year: "numeric" });
     return f.format(d);
   };
 
@@ -109,7 +91,11 @@ export default function StudentCalendar() {
   };
 
   if (!viewDate || !realToday) {
-    return <div className="min-h-screen flex items-center justify-center bg-white"><div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" /></div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
   }
 
   const cells = [];
@@ -138,7 +124,7 @@ export default function StudentCalendar() {
 
   return (
     <div className="flex flex-col gap-6 p-6 h-full">
-      <header className="h-16 border-b border-zinc-100 flex items-center justify-between px-6 bg-white shrink-0 rounded-xl">
+      <header className="h-16 border-b border-zinc-100 flex items-center justify-between px-6 bg-white shrink-0 rounded-xl shadow-sm">
         <div className="flex items-center gap-6">
           <button onClick={goToToday} className="border border-zinc-200 hover:bg-zinc-50 rounded-lg px-4 py-1.5 text-xs font-bold text-zinc-700 transition-colors">باز کردن امروز</button>
           <div className="flex items-center gap-2 text-zinc-500">
@@ -153,12 +139,16 @@ export default function StudentCalendar() {
         </div>
       </header>
       
-      <main className="flex-1 flex flex-col overflow-hidden rounded-xl border border-zinc-100">
+      <main className="flex-1 flex flex-col overflow-hidden rounded-xl border border-zinc-100 shadow-sm bg-zinc-50">
         <div className="grid grid-cols-7 border-b border-zinc-100 bg-white shrink-0">
-          {weekDays.map((day) => <div key={day} className="py-3 text-center border-l border-zinc-100 last:border-l-0"><span className="text-[11px] font-black text-zinc-400 uppercase tracking-wider">{day}</span></div>)}
+          {weekDays.map((day) => (
+            <div key={day} className="py-3 text-center border-l border-zinc-100 last:border-l-0">
+              <span className="text-[11px] font-black text-zinc-400 uppercase tracking-wider">{day}</span>
+            </div>
+          ))}
         </div>
 
-        <div className="flex-1 grid grid-cols-7 md:grid-cols-7 md:grid-rows-5 overflow-hidden">
+        <div className="flex-1 grid grid-cols-7 md:grid-rows-5 overflow-hidden bg-white">
           {cells.map((cell, index) => {
             const day = cell.dayNumber < 10 ? `0${cell.dayNumber}` : `${cell.dayNumber}`;
             const year = currentP.y;
@@ -168,12 +158,11 @@ export default function StudentCalendar() {
               <div
                 key={index}
                 onClick={() => {
-                   // باز کردن مدال به جای نویگیت کردن
                    setSelectedDateForModal(`${year}/${month}/${day}`);
                    setIsModalOpen(true);
                 }}
-                className={`border-b border-l border-zinc-100 bg-white p-1.5 transition-colors flex flex-col gap-1 min-h-30 overflow-hidden cursor-pointer ${
-                  !cell.isCurrentMonth ? "bg-zinc-50/30" : "hover:bg-zinc-50/50"
+                className={`border-b border-l border-zinc-100 bg-white p-2 transition-colors flex flex-col gap-1 min-h-[120px] overflow-hidden cursor-pointer ${
+                  !cell.isCurrentMonth ? "bg-zinc-50/50 opacity-60" : "hover:bg-zinc-50"
                 }`}
               >
                 <div className="flex justify-center mt-1 shrink-0">
@@ -181,7 +170,7 @@ export default function StudentCalendar() {
                     {cell.dayNumber}
                   </span>
                 </div>
-                <div className="flex-1 flex flex-col gap-1 overflow-y-auto mt-1 pr-1 pb-1">
+                <div className="flex-1 flex flex-col gap-1 overflow-y-auto mt-2 pr-1 pb-1">
                   {cell.tasks.map((task) => (
                     <div key={task.id} className={`px-2 py-1.5 rounded-md border text-[10px] font-bold cursor-pointer truncate flex items-center gap-1.5 shrink-0 ${getTaskColor(task.type)}`} title={task.title}>
                       {task.time ? <span className="shrink-0 flex items-center gap-0.5 opacity-80"><span className="w-1.5 h-1.5 rounded-full bg-current" />{task.time}</span> : null}
@@ -195,7 +184,6 @@ export default function StudentCalendar() {
         </div>
       </main>
 
-      {/* اضافه کردن مدال در انتهای فایل */}
       <StudyLogModal 
          isOpen={isModalOpen} 
          onClose={() => setIsModalOpen(false)} 
