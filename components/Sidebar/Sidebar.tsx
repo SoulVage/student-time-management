@@ -73,7 +73,7 @@ export default function SidebarWithStreak({ isOpen, onClose }: SidebarProps) {
     <>
       <aside
         dir="rtl"
-        className={`fixed md:sticky top-20 right-0 z-40 h-[calc(100vh-5rem)] w-74 bg-white border-l border-zinc-100 transition-transform duration-300 ease-in-out ${
+        className={`fixed md:sticky top-20 right-0 z-999 h-[calc(100vh-5rem)] w-74 bg-white border-l border-zinc-100 transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } md:translate-x-0`}
       >

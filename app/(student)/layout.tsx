@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header/Header";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import { ViewTransition } from "react";
 import { useState } from "react";
 
 const Layout = ({ children }) => {
@@ -17,9 +18,10 @@ const Layout = ({ children }) => {
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
         />
-
-        <main className="flex-1 overflow-y-auto p-6 bg-[#F6F8FA]">
-          {children}
+        <main className="flex-1 overflow-y-auto bg-[#F6F8FA] z-1">
+          <ViewTransition default="morph" share="morph">
+            {children}
+          </ViewTransition>
         </main>
       </div>
     </div>
