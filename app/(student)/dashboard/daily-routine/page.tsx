@@ -13,7 +13,6 @@ import {
   CalendarDays
 } from "lucide-react";
 
-// تایپ‌های مربوط به تسک‌ها
 type Category = "study" | "class" | "homework" | "rest";
 
 interface Task {
@@ -24,7 +23,6 @@ interface Task {
   time?: string;
 }
 
-// دیتای اولیه (برای اینکه صفحه خالی نباشد و ظاهرش را ببینی)
 const initialTasks: Task[] = [
   { id: "1", title: "مرور لغات زبان انگلیسی (درس ۳)", completed: true, category: "study", time: "08:00 - 09:00" },
   { id: "2", title: "کلاس آنلاین فیزیک", completed: false, category: "class", time: "10:30 - 12:00" },
@@ -37,7 +35,6 @@ export default function DailyRoutinePage() {
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskCategory, setNewTaskCategory] = useState<Category>("study");
 
-  // توابع مدیریت تسک‌ها
   const toggleTask = (id: string) => {
     setTasks(tasks.map(task => 
       task.id === id ? { ...task, completed: !task.completed } : task
@@ -63,12 +60,10 @@ export default function DailyRoutinePage() {
     setNewTaskTitle("");
   };
 
-  // محاسبه پیشرفت
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter(t => t.completed).length;
   const progressPercentage = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
 
-  // تنظیمات ظاهری دسته‌بندی‌ها
   const categoryConfig = {
     study: { icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50", label: "مطالعه" },
     class: { icon: MonitorPlay, color: "text-purple-500", bg: "bg-purple-50", label: "کلاس" },
@@ -76,7 +71,6 @@ export default function DailyRoutinePage() {
     rest: { icon: Coffee, color: "text-emerald-500", bg: "bg-emerald-50", label: "استراحت" },
   };
 
-  // دریافت تاریخ امروز (شمسی)
   const todayDate = new Intl.DateTimeFormat("fa-IR", { 
     weekday: "long", 
     day: "numeric", 
@@ -94,7 +88,6 @@ const TargetIcon = () => (
   return (
     <div dir="rtl" className="max-w-5xl mx-auto p-4 md:p-8">
       
-      {/* هدر صفحه و میزان پیشرفت */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 bg-white p-6 rounded-[24px] border border-zinc-100 shadow-sm">
         <div>
         <h1 className="text-2xl md:text-3xl font-black text-zinc-800 flex items-center gap-3">
@@ -123,7 +116,6 @@ const TargetIcon = () => (
         </div>
       </div>
 
-      {/* فرم افزودن تسک جدید */}
       <form onSubmit={addTask} className="flex flex-col md:flex-row gap-3 mb-10">
         <div className="flex-1 relative">
           <input 
@@ -158,7 +150,6 @@ const TargetIcon = () => (
         </div>
       </form>
 
-      {/* لیست تسک‌ها */}
       <div className="bg-white rounded-[24px] border border-zinc-100 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-zinc-100 bg-zinc-50/50">
           <h2 className="text-sm font-bold text-zinc-600">لیست وظایف ({tasks.filter(t => !t.completed).length} کار باقیمانده)</h2>
@@ -181,7 +172,6 @@ const TargetIcon = () => (
                   className={`group flex items-center justify-between p-4 px-6 border-b border-zinc-100 last:border-0 transition-all hover:bg-zinc-50 ${task.completed ? "opacity-60 bg-zinc-50/50" : ""}`}
                 >
                   <div className="flex items-center gap-4 flex-1">
-                    {/* دکمه تیک زدن */}
                     <button 
                       onClick={() => toggleTask(task.id)}
                       className={`shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-zinc-300 hover:text-orange-500'}`}
@@ -189,7 +179,6 @@ const TargetIcon = () => (
                       {task.completed ? <CheckCircle2 className="w-6 h-6" /> : <Circle className="w-6 h-6" />}
                     </button>
                     
-                    {/* اطلاعات تسک */}
                     <div className="flex flex-col gap-1">
                       <span className={`text-[15px] font-bold transition-all ${task.completed ? 'line-through text-zinc-500' : 'text-zinc-800'}`}>
                         {task.title}
@@ -203,13 +192,10 @@ const TargetIcon = () => (
                   </div>
 
                   <div className="flex items-center gap-4">
-                    {/* بج دسته‌بندی */}
                     <div className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold ${categoryConfig[task.category].bg} ${categoryConfig[task.category].color}`}>
                       <CatIcon className="w-3.5 h-3.5" />
                       {categoryConfig[task.category].label}
                     </div>
-
-                    {/* دکمه حذف */}
                     <button 
                       onClick={() => deleteTask(task.id)}
                       className="text-zinc-300 hover:text-rose-500 hover:bg-rose-50 p-2 rounded-xl transition-all opacity-0 group-hover:opacity-100"

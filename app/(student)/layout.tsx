@@ -10,7 +10,6 @@ const Layout = ({ children }) => {
 
   return (
     <div className="flex h-screen flex-col">
-      {/* Header controls the mobile state trigger */}
       <Header onMenuToggle={() => setIsSidebarOpen((prev) => !prev)} />
 
       <div className="flex flex-1 overflow-hidden">

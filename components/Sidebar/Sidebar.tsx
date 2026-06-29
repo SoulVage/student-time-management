@@ -18,7 +18,6 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-// ناوبری همراه با سیستم بج عددی دیزاین پلتفرم
 const navItems = [
   {
     name: "پیشخوان",
@@ -55,12 +54,11 @@ const navItems = [
   },
 ];
 
-// دیتای پیگیری روزانه استریک (Weekly Log Tracker)
 const streakDays = [
   { label: "ش", status: "completed" },
   { label: "ی", status: "completed" },
   { label: "د", status: "completed" },
-  { label: "س", status: "active" }, // روز جاری
+  { label: "س", status: "active" },
   { label: "چ", status: "pending" },
   { label: "پ", status: "pending" },
   { label: "ج", status: "pending" },
@@ -78,7 +76,6 @@ export default function SidebarWithStreak({ isOpen, onClose }: SidebarProps) {
         } md:translate-x-0`}
       >
         <div className="flex h-full flex-col justify-between p-5">
-          {/* هدر سایدبار و بخش آیتم‌های منو */}
           <div className="space-y-6">
             <div className="flex items-center justify-between px-2">
               <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
@@ -105,7 +102,6 @@ export default function SidebarWithStreak({ isOpen, onClose }: SidebarProps) {
                         : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
                     }`}
                   >
-                    {/* خط شاخص عمودی لبه راست منوی فعال */}
                     {isActive && (
                       <span className="absolute right-0 top-1/4 h-1/2 w-0.5 rounded-l-full bg-orange-500" />
                     )}
@@ -121,7 +117,6 @@ export default function SidebarWithStreak({ isOpen, onClose }: SidebarProps) {
                       <span>{item.name}</span>
                     </div>
 
-                    {/* نمایه شمارنده مینیاتوری */}
                     {item.count && (
                       <span
                         className={`text-[9px] px-2 py-0.5 rounded-md font-black ${
@@ -141,9 +136,7 @@ export default function SidebarWithStreak({ isOpen, onClose }: SidebarProps) {
             </nav>
           </div>
 
-          {/* بخش پایینی: ویجت استریک + تنظیمات و خروج */}
           <div className="space-y-4">
-            {/* کارت استریک پر جزییات نارنجی */}
             <div className="rounded-2xl border border-zinc-100 bg-white p-4 shadow-[0_12px_32px_-10px_rgba(0,0,0,0.03)]">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
@@ -165,12 +158,10 @@ export default function SidebarWithStreak({ isOpen, onClose }: SidebarProps) {
                 </div>
               </div>
 
-              {/* پروگرس بار دقیق گرادیانی */}
               <div className="mt-4 h-1.5 w-full rounded-full bg-zinc-50 overflow-hidden p-[1px] border border-zinc-100/50">
                 <div className="h-full w-4/5 rounded-full bg-gradient-to-l from-orange-500 via-amber-500 to-yellow-400" />
               </div>
 
-              {/* تراکر تقویم خطی هفتگی زیر مینی‌پانل */}
               <div className="mt-4 flex items-center justify-between border-t border-zinc-50 pt-3 px-0.5">
                 {streakDays.map((day, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-1.5">

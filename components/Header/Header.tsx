@@ -20,9 +20,7 @@ export default function Header({ onMenuToggle }) {
       dir="rtl"
       className="sticky top-0 z-30 flex h-20 w-full items-center justify-between bg-white px-4 sm:px-8 border-b border-gray-100"
     >
-      {/* بخش راست: منوی موبایل، لوگو و عنوان سامانه */}
       <div className="flex items-center gap-3 sm:gap-4">
-        {/* دکمه همبرگری منو - فقط در موبایل و تبلت */}
         <button
           onClick={onMenuToggle}
           className="flex h-9 w-9 items-center justify-center rounded-xl text-gray-500 hover:bg-gray-50 md:hidden transition-colors"
@@ -30,12 +28,10 @@ export default function Header({ onMenuToggle }) {
           <Menu className="h-5 w-5 stroke-[1.5]" />
         </button>
 
-        {/* آیکون برنامه */}
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50/80 border border-indigo-100/40 text-indigo-600 shadow-sm shadow-indigo-100/10">
           <BookOpen className="h-5 w-5 stroke-[1.5]" />
         </div>
 
-        {/* عناوین متنی */}
         <div className="md:flex flex-col hidden">
           <h1 className="text-sm sm:text-base font-bold text-gray-900 tracking-tight">
             داشبورد مطالعاتی
@@ -46,9 +42,7 @@ export default function Header({ onMenuToggle }) {
         </div>
       </div>
 
-      {/* بخش چپ: جستجو، منوی گوگل/لینکدینی، اعلان‌ها و پروفایل */}
       <div className="flex items-center gap-2 sm:gap-4">
-        {/* نوار جستجو در سمت چپ (فقط در دسکتاپ لپ‌تاپ به بالا lg) */}
         <div className="hidden lg:flex items-center justify-center relative w-64 xl:w-90 ml-2 px-3 py-2.5 bg-[#F6F8FA] gap-3 rounded-xl">
           <Search className="h-4 w-4 text-gray-400 stroke-[1.5]" />
           <input
@@ -58,12 +52,10 @@ export default function Header({ onMenuToggle }) {
           />
         </div>
 
-        {/* آیکون جستجوی سریع فقط برای نمایشگرهای کوچک */}
         <button className="flex lg:hidden h-10 w-10 items-center justify-center rounded-full text-gray-500 hover:bg-gray-50 transition-colors">
           <Search className="h-5 w-5 stroke-[1.5]" />
         </button>
 
-        {/* منوی شبکه‌ای مشابه گوگل و لینکدین (App Launcher) */}
         <div className="relative group select-none">
           <button
             className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 hover:bg-gray-50 hover:text-indigo-600 transition-colors"
@@ -86,7 +78,6 @@ export default function Header({ onMenuToggle }) {
                   </h3>
                 </div>
 
-                {/* گرید ۲ در ۲ برای برنامه‌ها */}
                 <div className="grid grid-cols-2 gap-2">
                   <a
                     href="#library"
@@ -130,16 +121,13 @@ export default function Header({ onMenuToggle }) {
           </AnimatePresence>
         </div>
 
-        {/* دکمه اعلان‌ها */}
         <button className="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-50 hover:text-indigo-600">
           <Bell className="h-5 w-5 stroke-[1.5]" />
           <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white animate-pulse"></span>
         </button>
 
-        {/* خط جداکننده عمودی */}
         <div className="h-6 w-px bg-gray-200 mx-1"></div>
 
-        {/* منوی بازشوی پروفایل کاربری */}
         <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group select-none">
           <div className="hidden sm:flex flex-col items-end">
             <span className="text-xs sm:text-sm font-bold text-gray-800 group-hover:text-indigo-600 transition-colors">

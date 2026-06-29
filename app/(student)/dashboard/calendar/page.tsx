@@ -29,7 +29,6 @@ export default function StudentCalendar() {
   const [realToday, setRealToday] = useState<Date | null>(null);
   const [viewDate, setViewDate] = useState<Date | null>(null);
   
-  // استیت‌های مدال
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDateForModal, setSelectedDateForModal] = useState("");
 

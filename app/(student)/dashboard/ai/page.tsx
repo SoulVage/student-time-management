@@ -12,7 +12,6 @@ import {
   BookOpen 
 } from "lucide-react";
 
-// تایپ برای پیام‌های چت
 interface Message {
   id: string;
   type: "bot" | "user";
@@ -40,12 +39,10 @@ export default function AiAssistantPage() {
   const handleSendMessage = (text: string = inputValue) => {
     if (!text.trim()) return;
 
-    // اضافه کردن پیام کاربر
     const newUserMsg: Message = { id: Date.now().toString(), type: "user", text };
     setMessages((prev) => [...prev, newUserMsg]);
     setInputValue("");
 
-    // شبیه‌سازی جواب ربات (اینجا بعداً API هوش مصنوعی رو وصل می‌کنی)
     setTimeout(() => {
       const newBotMsg: Message = {
         id: (Date.now() + 1).toString(),
@@ -58,10 +55,7 @@ export default function AiAssistantPage() {
 
   return (
     <div className="p-6 h-[calc(100vh-80px)] flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto" dir="rtl">
-      
-      {/* بخش سمت راست: چت‌بات (AI Assistant Chat Window) */}
       <div className="flex-1 flex flex-col bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden">
-        {/* هدر چت */}
         <div className="h-16 px-6 border-b border-zinc-100 flex items-center gap-3 bg-zinc-50/50">
           <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">
             <Sparkles className="w-5 h-5" />
@@ -72,18 +66,15 @@ export default function AiAssistantPage() {
           </div>
         </div>
 
-        {/* ناحیه پیام‌ها */}
         <div className="flex-1 p-6 overflow-y-auto flex flex-col gap-6 bg-zinc-50/30">
           {messages.map((msg) => (
             <div key={msg.id} className={`flex gap-4 max-w-[80%] ${msg.type === "user" ? "self-end flex-row-reverse" : "self-start"}`}>
-              {/* آواتار */}
               <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 ${
                 msg.type === "bot" ? "bg-indigo-600 text-white shadow-md shadow-indigo-200" : "bg-zinc-200 text-zinc-600"
               }`}>
                 {msg.type === "bot" ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
               </div>
               
-              {/* حباب پیام */}
               <div className={`p-4 rounded-2xl text-sm leading-relaxed ${
                 msg.type === "user" 
                   ? "bg-zinc-800 text-white rounded-tl-sm shadow-sm" 
@@ -95,7 +86,6 @@ export default function AiAssistantPage() {
           ))}
         </div>
 
-        {/* پرامپت‌های پیشنهادی */}
         <div className="px-6 py-3 bg-white border-t border-zinc-100 flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
           <span className="text-xs font-bold text-zinc-400 ml-2">پیشنهادها:</span>
           {suggestedPrompts.map((prompt, index) => (
@@ -109,7 +99,6 @@ export default function AiAssistantPage() {
           ))}
         </div>
 
-        {/* ورودی متن (Chat Input Field) */}
         <div className="p-4 bg-white border-t border-zinc-100">
           <div className="flex items-center gap-2 bg-zinc-50 border border-zinc-200 rounded-2xl p-2 focus-within:border-indigo-500 focus-within:bg-white transition-all shadow-inner">
             <input
@@ -130,7 +119,6 @@ export default function AiAssistantPage() {
         </div>
       </div>
 
-      {/* بخش سمت چپ: پنل تحلیل عملکرد (Mini Analytics Panel) */}
       <div className="w-full lg:w-[320px] bg-white rounded-3xl border border-zinc-100 shadow-sm p-6 flex flex-col gap-8 overflow-y-auto">
         
         <div>
@@ -139,18 +127,15 @@ export default function AiAssistantPage() {
             تحلیل عملکرد من
           </h2>
 
-          {/* چارت لاین (پیشرفت اخیر) */}
           <div className="mb-8">
             <h3 className="text-xs font-bold text-zinc-500 mb-3">پیشرفت اخیر</h3>
             <div className="h-24 rounded-xl bg-gradient-to-t from-indigo-50/50 to-transparent border-b-2 border-indigo-500 flex items-end justify-between px-2 pb-1 relative">
-               {/* شبیه‌سازی یک نمودار ساده */}
                {[40, 65, 45, 80, 55, 90, 75].map((h, i) => (
                   <div key={i} className="w-2 bg-indigo-200 rounded-t-sm" style={{ height: `${h}%` }}></div>
                ))}
             </div>
           </div>
 
-          {/* چارت میله‌ای (توزیع زمان مطالعه) */}
           <div className="mb-8">
             <h3 className="text-xs font-bold text-zinc-500 mb-3 flex items-center gap-1.5">
               <BarChart3 className="w-4 h-4" /> توزیع زمان مطالعه
@@ -170,7 +155,6 @@ export default function AiAssistantPage() {
             </div>
           </div>
 
-          {/* چارت دونات (تکمیل دروس) */}
           <div className="mb-8 flex items-center justify-between p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
             <div>
               <h3 className="text-xs font-bold text-zinc-500 mb-1 flex items-center gap-1.5">
@@ -178,13 +162,10 @@ export default function AiAssistantPage() {
               </h3>
               <p className="text-2xl font-black text-zinc-800">۷۸٪</p>
             </div>
-            {/* شبیه‌سازی دایره پیشرفت */}
             <div className="w-16 h-16 rounded-full border-4 border-zinc-200 border-t-emerald-500 border-r-emerald-500 transform rotate-45 shadow-sm"></div>
           </div>
-
         </div>
 
-        {/* آمارهای متنی */}
         <div className="mt-auto grid grid-cols-2 gap-3 pt-4 border-t border-zinc-100">
           <div className="p-3 bg-indigo-50 rounded-xl text-center">
             <span className="block text-[10px] font-bold text-indigo-400 mb-1">میانگین نمرات</span>
@@ -195,7 +176,6 @@ export default function AiAssistantPage() {
             <span className="block text-lg font-black text-orange-700">۴۲ <span className="text-xs">ساعت</span></span>
           </div>
         </div>
-
       </div>
     </div>
   );

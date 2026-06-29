@@ -25,7 +25,6 @@ export default function StudyLogModal({ isOpen, onClose, selectedDate = "امر�
     <div dir="rtl" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-900/40 backdrop-blur-sm transition-all duration-300">
       <div className="w-full max-w-4xl bg-white rounded-[32px] shadow-2xl flex flex-col max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
-        {/* هدر */}
         <div className="flex items-center justify-between p-6 border-b border-zinc-100 bg-zinc-50/50">
           <div>
             <h2 className="text-xl font-black text-zinc-900">ثبت گزارش مطالعه جدید</h2>
@@ -39,10 +38,7 @@ export default function StudyLogModal({ isOpen, onClose, selectedDate = "امر�
           </button>
         </div>
 
-        {/* محتوای فرم */}
         <div className="p-8 overflow-y-auto flex flex-col gap-8">
-          
-          {/* ردیف اول: تاریخ و درس */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-bold text-zinc-700 mb-2">تاریخ</label>
@@ -69,7 +65,6 @@ export default function StudyLogModal({ isOpen, onClose, selectedDate = "امر�
             </div>
           </div>
 
-          {/* ردیف دوم: بازه‌های زمانی */}
           <div className="border border-zinc-100 rounded-3xl overflow-hidden bg-white shadow-sm">
             <div className="bg-zinc-50 px-6 py-4 border-b border-zinc-100 flex items-center justify-between">
               <h3 className="text-sm font-bold text-zinc-800">بازه‌های زمانی مطالعه</h3>
@@ -116,7 +111,6 @@ export default function StudyLogModal({ isOpen, onClose, selectedDate = "امر�
             </div>
           </div>
 
-          {/* ردیف سوم: شاخص‌های ارزیابی */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6 bg-zinc-50 rounded-3xl border border-zinc-100">
             <div>
               <label className="block text-sm font-bold text-zinc-700 mb-3">میزان سختی درس</label>
@@ -156,7 +150,6 @@ export default function StudyLogModal({ isOpen, onClose, selectedDate = "امر�
             </div>
           </div>
 
-          {/* ردیف چهارم: بازخورد */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-bold text-zinc-700 mb-2">خلاصه جلسه</label>
@@ -174,8 +167,6 @@ export default function StudyLogModal({ isOpen, onClose, selectedDate = "امر�
             </div>
           </div>
         </div>
-
-        {/* فوتر */}
         <div className="flex items-center justify-end gap-3 p-6 border-t border-zinc-100 bg-white">
           <button 
             onClick={onClose}
