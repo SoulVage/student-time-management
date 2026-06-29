@@ -187,7 +187,7 @@ export default function StudentCalendar() {
   const today = new Date();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 p-6">
       {/* بخش اصلی */}
       <header className="h-16 border-b border-zinc-100 flex items-center justify-between px-6 bg-white shrink-0 rounded-xl">
         <div className="flex items-center gap-6">
