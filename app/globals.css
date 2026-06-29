@@ -1,26 +1,66 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "iranYekan";
+  src: url("../public/IranYekan.woff2") format("woff-variations");
+}
+body {
+  font-family: "iranYekan";
+}
+/* Transition timing */
+::view-transition-group(.morph) {
+  animation-duration: 250ms;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+::view-transition-group(root) {
+  z-index: -1;
+}
+/* Old page (exit) */
+::view-transition-old(.morph) {
+  animation: morph-exit 250ms;
+  -webkit-animation: morph-exit 250ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* New page (enter) */
+::view-transition-new(.morph) {
+  animation: morph-enter 250ms;
+  -webkit-animation: morph-enter 250ms;
+}
+
+/* Image pair */
+::view-transition-image-pair(.morph) {
+  animation: none;
+}
+
+/* Enter */
+@keyframes morph-enter {
+  from {
+    opacity: 0.4;
+    scale: 0.9;
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Exit */
+@keyframes morph-exit {
+  from {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 0.4;
+    scale: 0.9;
+    filter: blur(8px);
+  }
 }
