@@ -205,9 +205,18 @@ export default function StudentDashboardPage() {
 }
 
 
-function MetricCard({ icon, iconBg, title, value, unit, trend }: any) {
+type MetricCardProps = {
+  icon: React.ReactNode;
+  iconBg?: string;
+  title: string;
+  value: React.ReactNode | string | number;
+  unit?: string;
+  trend?: string | number;
+};
+
+function MetricCard({ icon, iconBg = '', title, value, unit, trend }: MetricCardProps) {
   return (
-    <div className="bg-white border border-zinc-100 p-6 rounded-[24px] transition-all duration-300 hover:shadow-md group">
+    <div className="bg-white border border-zinc-100 p-6 rounded-3xl transition-all duration-300 hover:shadow-md group">
       <div className="flex items-center justify-between mb-6">
         <div
           className={`w-12 h-12 rounded-2xl flex items-center justify-center ${iconBg} transition-transform group-hover:scale-105`}
