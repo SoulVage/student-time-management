@@ -13,8 +13,13 @@ import {
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Header({ onMenuToggle }) {
+interface HeaderProps {
+  onMenuToggle: () => void;
+}
+
+export default function Header({ onMenuToggle }: HeaderProps) {
   const [onAccessMenu, setOnAccessMenu] = useState(false);
+  
   return (
     <header
       dir="rtl"

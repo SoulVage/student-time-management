@@ -69,7 +69,7 @@ export default function StudyChart() {
 
           <Tooltip
             content={<CustomTooltip />}
-            cursor={{ fill: "#f4f4f5", radius: [8, 8, 0, 0] }}
+            cursor={{ fill: "#f4f4f5"}}
           />
 
           <Bar dataKey="value" radius={[6, 6, 0, 0]}>

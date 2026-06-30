@@ -1,17 +1,23 @@
 "use client";
 
+import React, { useState } from "react";
 import Header from "@/components/Header/Header";
 import Sidebar from "@/components/Sidebar/Sidebar";
-import { ViewTransition } from "react";
-import { useState } from "react";
+import { ViewTransition } from "react"; 
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div className="flex h-screen flex-col">
-      <Header onMenuToggle={() => setIsSidebarOpen((prev) => !prev)} />
-
+      <Header 
+        onMenuToggle={() => setIsSidebarOpen((prev) => !prev)} 
+      />
+      
       <div className="flex flex-1 overflow-hidden">
         <Sidebar
           isOpen={isSidebarOpen}
