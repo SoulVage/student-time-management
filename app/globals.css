@@ -6,7 +6,6 @@
 body {
   font-family: "iranYekan";
 }
-/* Transition timing */
 ::view-transition-group(.morph) {
   animation-duration: 250ms;
 }
@@ -18,24 +17,20 @@ body {
 ::view-transition-group(root) {
   z-index: -1;
 }
-/* Old page (exit) */
 ::view-transition-old(.morph) {
   animation: morph-exit 250ms;
   -webkit-animation: morph-exit 250ms;
 }
 
-/* New page (enter) */
 ::view-transition-new(.morph) {
   animation: morph-enter 250ms;
   -webkit-animation: morph-enter 250ms;
 }
 
-/* Image pair */
 ::view-transition-image-pair(.morph) {
   animation: none;
 }
 
-/* Enter */
 @keyframes morph-enter {
   from {
     opacity: 0.4;
@@ -50,7 +45,6 @@ body {
   }
 }
 
-/* Exit */
 @keyframes morph-exit {
   from {
     opacity: 1;
