@@ -35,5 +35,5 @@
 
 1. **کلون کردن مخزن:**
    ```bash
-   git clone [https://github.com/amirnotron/student-anlyse.git](https://github.com/amirnotron/student-anlyse.git)
+   git clone [https://github.com/SoulVage/student-time-management.git](https://github.com/amirnotron/student-time-management.git)
    cd student-anlyse
