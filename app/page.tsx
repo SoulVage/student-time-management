@@ -8,7 +8,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     if (role === "student") {
-      router.push("/dashboard");
+      router.push("/dashboard/start");
     } else if (role === "admin") {
       router.push("/admin");
     } else if (role === "") {

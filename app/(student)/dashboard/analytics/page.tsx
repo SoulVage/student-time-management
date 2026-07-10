@@ -12,7 +12,7 @@ import {
   Check,
   Play,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
 } from "lucide-react";
 import StudyChart from "@/components/StudyChart/StudyChart";
 
@@ -23,19 +23,52 @@ export default function StudentDashboardPage() {
   }).format(date);
 
   const timelineData = [
-    { id: 1, date: "مهر ۱۴۰۲", title: "شروع سال تحصیلی", desc: "آزمون تعیین سطح و برنامه‌ریزی", status: "completed" },
-    { id: 2, date: "آذر ۱۴۰۲", title: "آزمون جامع اول", desc: "کسب تراز ۶۵۰۰", status: "completed" },
-    { id: 3, date: "دی ۱۴۰۲", title: "امتحانات ترم اول", desc: "معدل ۱۹.۵ در امتحانات نهایی", status: "completed" },
-    { id: 4, date: "اسفند ۱۴۰۲", title: "اردوی مطالعاتی عید", desc: "جمع‌بندی دروس پایه", status: "active" },
-    { id: 5, date: "خرداد ۱۴۰۳", title: "امتحانات نهایی", desc: "آمادگی برای کسب معدل ۲۰", status: "upcoming" },
-    { id: 6, date: "تیر ۱۴۰۳", title: "کنکور سراسری", desc: "آزمون اصلی", status: "upcoming" },
+    {
+      id: 1,
+      date: "مهر ۱۴۰۲",
+      title: "شروع سال تحصیلی",
+      desc: "آزمون تعیین سطح و برنامه‌ریزی",
+      status: "completed",
+    },
+    {
+      id: 2,
+      date: "آذر ۱۴۰۲",
+      title: "آزمون جامع اول",
+      desc: "کسب تراز ۶۵۰۰",
+      status: "completed",
+    },
+    {
+      id: 3,
+      date: "دی ۱۴۰۲",
+      title: "امتحانات ترم اول",
+      desc: "معدل ۱۹.۵ در امتحانات نهایی",
+      status: "completed",
+    },
+    {
+      id: 4,
+      date: "اسفند ۱۴۰۲",
+      title: "اردوی مطالعاتی عید",
+      desc: "جمع‌بندی دروس پایه",
+      status: "active",
+    },
+    {
+      id: 5,
+      date: "خرداد ۱۴۰۳",
+      title: "امتحانات نهایی",
+      desc: "آمادگی برای کسب معدل ۲۰",
+      status: "upcoming",
+    },
+    {
+      id: 6,
+      date: "تیر ۱۴۰۳",
+      title: "کنکور سراسری",
+      desc: "آزمون اصلی",
+      status: "upcoming",
+    },
   ];
 
   return (
-    <div
-      dir="rtl"
-      className="w-full h-full bg-[#F8F9FA] custom-scrollbar p-6"
-    >
+    <div dir="rtl" className="w-full h-full bg-[#F8F9FA] custom-scrollbar p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
         <div className="flex items-center gap-4">
           <div className="w-1.5 h-10 bg-orange-500 rounded-full hidden md:block" />
@@ -93,8 +126,10 @@ export default function StudentDashboardPage() {
 
         <div className="lg:col-span-4 bg-white border border-zinc-100 rounded-3xl p-7 shadow-sm flex flex-col h-[420px]">
           <div className="flex items-center justify-between mb-6">
-             <h2 className="text-lg font-bold text-zinc-900">اقدامات فوری</h2>
-             <button className="text-xs text-indigo-600 font-bold hover:text-indigo-700 transition-colors">مشاهده همه</button>
+            <h2 className="text-lg font-bold text-zinc-900">اقدامات فوری</h2>
+            <button className="text-xs text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
+              مشاهده همه
+            </button>
           </div>
 
           <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar">
@@ -123,28 +158,45 @@ export default function StudentDashboardPage() {
 
         <div className="lg:col-span-3 bg-white border border-zinc-100 rounded-3xl p-7 shadow-sm flex flex-col items-center justify-center h-[420px] relative overflow-hidden">
           <div className="w-full text-right mb-6">
-             <h2 className="text-lg font-bold text-zinc-900">تایمر تمرکز</h2>
-             <p className="text-xs text-zinc-500 mt-1 font-medium">۲۵ دقیقه مطالعه عمیق</p>
+            <h2 className="text-lg font-bold text-zinc-900">تایمر تمرکز</h2>
+            <p className="text-xs text-zinc-500 mt-1 font-medium">
+              ۲۵ دقیقه مطالعه عمیق
+            </p>
           </div>
-          
+
           <div className="relative w-40 h-40 flex items-center justify-center mb-8">
-            <svg className="w-full h-full transform -rotate-90 absolute" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#f4f4f5" strokeWidth="6" />
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="45" 
-                fill="none" 
-                stroke="#4f46e5" 
-                strokeWidth="6" 
-                strokeDasharray="283" 
-                strokeDashoffset="60" 
+            <svg
+              className="w-full h-full transform -rotate-90 absolute"
+              viewBox="0 0 100 100"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#f4f4f5"
+                strokeWidth="6"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#4f46e5"
+                strokeWidth="6"
+                strokeDasharray="283"
+                strokeDashoffset="60"
                 strokeLinecap="round"
-                className="transition-all duration-1000 ease-in-out" 
+                className="transition-all duration-1000 ease-in-out"
               />
             </svg>
             <div className="flex flex-col items-center z-10">
-               <span className="text-4xl font-black text-indigo-600 tracking-tight" dir="ltr">25:00</span>
+              <span
+                className="text-4xl font-black text-indigo-600 tracking-tight"
+                dir="ltr"
+              >
+                25:00
+              </span>
             </div>
           </div>
 
@@ -157,7 +209,9 @@ export default function StudentDashboardPage() {
 
       <div className="bg-white border border-zinc-100 rounded-3xl p-7 shadow-sm w-full">
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-lg font-bold text-zinc-900">مسیر پیشرفت تحصیلی</h2>
+          <h2 className="text-lg font-bold text-zinc-900">
+            مسیر پیشرفت تحصیلی
+          </h2>
           <div className="flex gap-2">
             <button className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 transition-colors">
               <ChevronRight className="w-4 h-4" />
@@ -170,14 +224,13 @@ export default function StudentDashboardPage() {
 
         <div className="w-full overflow-x-auto custom-scrollbar pb-8 pt-4">
           <div className="relative min-w-[900px] flex items-center justify-between px-8">
-            
             <div className="absolute left-8 right-8 top-1/2 -translate-y-1/2 h-[2px] bg-zinc-100 z-0"></div>
 
             {timelineData.map((item, index) => (
-              <TimelineNode 
+              <TimelineNode
                 key={item.id}
-                position={index % 2 === 0 ? "top" : "bottom"} 
-                {...item} 
+                position={index % 2 === 0 ? "top" : "bottom"}
+                {...item}
               />
             ))}
           </div>
@@ -204,7 +257,6 @@ export default function StudentDashboardPage() {
   );
 }
 
-
 type MetricCardProps = {
   icon: React.ReactNode;
   iconBg?: string;
@@ -214,7 +266,14 @@ type MetricCardProps = {
   trend?: string | number;
 };
 
-function MetricCard({ icon, iconBg = '', title, value, unit, trend }: MetricCardProps) {
+function MetricCard({
+  icon,
+  iconBg = "",
+  title,
+  value,
+  unit,
+  trend,
+}: MetricCardProps) {
   return (
     <div className="bg-white border border-zinc-100 p-6 rounded-3xl transition-all duration-300 hover:shadow-md group">
       <div className="flex items-center justify-between mb-6">
@@ -253,9 +312,21 @@ function TaskItem({
   type: "urgent" | "meeting" | "routine";
 }) {
   const styles = {
-    urgent: { border: "border-rose-100", dot: "bg-rose-500", hoverBtn: "text-rose-500 hover:bg-rose-50" },
-    meeting: { border: "border-indigo-100", dot: "bg-indigo-500", hoverBtn: "text-indigo-500 hover:bg-indigo-50" },
-    routine: { border: "border-zinc-200", dot: "bg-zinc-400", hoverBtn: "text-zinc-600 hover:bg-zinc-100" },
+    urgent: {
+      border: "border-rose-100",
+      dot: "bg-rose-500",
+      hoverBtn: "text-rose-500 hover:bg-rose-50",
+    },
+    meeting: {
+      border: "border-indigo-100",
+      dot: "bg-indigo-500",
+      hoverBtn: "text-indigo-500 hover:bg-indigo-50",
+    },
+    routine: {
+      border: "border-zinc-200",
+      dot: "bg-zinc-400",
+      hoverBtn: "text-zinc-600 hover:bg-zinc-100",
+    },
   };
 
   return (
@@ -278,7 +349,9 @@ function TaskItem({
           </div>
         </div>
       </div>
-      <button className={`opacity-0 group-hover:opacity-100 transition-opacity p-2 rounded-xl ${styles[type].hoverBtn}`}>
+      <button
+        className={`opacity-0 group-hover:opacity-100 transition-opacity p-2 rounded-xl ${styles[type].hoverBtn}`}
+      >
         <Check className="w-4 h-4" />
       </button>
     </div>
@@ -287,38 +360,70 @@ function TaskItem({
 
 function TimelineNode({ position, date, title, desc, status }: any) {
   const isTop = position === "top";
-  
+
   const statusStyles = {
-    completed: { node: "bg-emerald-500 border-white", line: "bg-emerald-200", cardBorder: "hover:border-emerald-200" },
-    active: { node: "bg-indigo-600 border-white ring-4 ring-indigo-50", line: "bg-indigo-200", cardBorder: "border-indigo-100 shadow-sm" },
-    upcoming: { node: "bg-zinc-300 border-white", line: "bg-zinc-200", cardBorder: "hover:border-zinc-200" }
+    completed: {
+      node: "bg-emerald-500 border-white",
+      line: "bg-emerald-200",
+      cardBorder: "hover:border-emerald-200",
+    },
+    active: {
+      node: "bg-indigo-600 border-white ring-4 ring-indigo-50",
+      line: "bg-indigo-200",
+      cardBorder: "border-indigo-100 shadow-sm",
+    },
+    upcoming: {
+      node: "bg-zinc-300 border-white",
+      line: "bg-zinc-200",
+      cardBorder: "hover:border-zinc-200",
+    },
   };
 
   const currentStyle = statusStyles[status as keyof typeof statusStyles];
 
   return (
     <div className="relative z-10 flex flex-col items-center group w-40">
-      
       {isTop && (
-        <div className={`mb-8 bg-white border border-zinc-100 p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-md w-full relative z-20 ${currentStyle.cardBorder}`}>
-          <span className="inline-block px-2 py-1 bg-zinc-50 rounded-md text-[10px] font-bold text-zinc-500 mb-2">{date}</span>
-          <h4 className="text-sm font-bold text-zinc-800 leading-tight">{title}</h4>
-          <p className="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">{desc}</p>
-          <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-[2px] h-8 ${currentStyle.line} -z-10 transition-colors`}></div>
+        <div
+          className={`mb-8 bg-white border border-zinc-100 p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-md w-full relative z-20 ${currentStyle.cardBorder}`}
+        >
+          <span className="inline-block px-2 py-1 bg-zinc-50 rounded-md text-[10px] font-bold text-zinc-500 mb-2">
+            {date}
+          </span>
+          <h4 className="text-sm font-bold text-zinc-800 leading-tight">
+            {title}
+          </h4>
+          <p className="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">
+            {desc}
+          </p>
+          <div
+            className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-[2px] h-8 ${currentStyle.line} -z-10 transition-colors`}
+          ></div>
         </div>
       )}
 
-      <div className={`w-5 h-5 rounded-full border-[3px] shadow-sm flex items-center justify-center z-20 transition-transform group-hover:scale-125 ${currentStyle.node}`}></div>
+      <div
+        className={`w-5 h-5 rounded-full border-[3px] shadow-sm flex items-center justify-center z-20 transition-transform group-hover:scale-125 ${currentStyle.node}`}
+      ></div>
 
       {!isTop && (
-        <div className={`mt-8 bg-white border border-zinc-100 p-4 rounded-2xl transition-all duration-300 hover:translate-y-1 hover:shadow-md w-full relative z-20 ${currentStyle.cardBorder}`}>
-          <div className={`absolute -top-8 left-1/2 -translate-x-1/2 w-[2px] h-8 ${currentStyle.line} -z-10 transition-colors`}></div>
-          <span className="inline-block px-2 py-1 bg-zinc-50 rounded-md text-[10px] font-bold text-zinc-500 mb-2">{date}</span>
-          <h4 className="text-sm font-bold text-zinc-800 leading-tight">{title}</h4>
-          <p className="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">{desc}</p>
+        <div
+          className={`mt-8 bg-white border border-zinc-100 p-4 rounded-2xl transition-all duration-300 hover:translate-y-1 hover:shadow-md w-full relative z-20 ${currentStyle.cardBorder}`}
+        >
+          <div
+            className={`absolute -top-8 left-1/2 -translate-x-1/2 w-[2px] h-8 ${currentStyle.line} -z-10 transition-colors`}
+          ></div>
+          <span className="inline-block px-2 py-1 bg-zinc-50 rounded-md text-[10px] font-bold text-zinc-500 mb-2">
+            {date}
+          </span>
+          <h4 className="text-sm font-bold text-zinc-800 leading-tight">
+            {title}
+          </h4>
+          <p className="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">
+            {desc}
+          </p>
         </div>
       )}
-      
     </div>
   );
 }

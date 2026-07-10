@@ -20,8 +20,13 @@ interface SidebarProps {
 
 const navItems = [
   {
+    name: "شروع",
+    href: "/dashboard/start",
+    icon: LayoutDashboard,
+  },
+  {
     name: "پیشخوان",
-    href: "/dashboard",
+    href: "/dashboard/analytics",
     icon: LayoutDashboard,
   },
   {
