@@ -3,6 +3,9 @@
   font-family: "iranYekan";
   src: url("../public/IranYekan.woff2") format("woff-variations");
 }
+*:focus {
+  outline: none !important;
+}
 body {
   font-family: "iranYekan";
 }

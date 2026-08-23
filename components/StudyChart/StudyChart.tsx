@@ -27,19 +27,29 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div className="bg-white px-4 py-2 border border-zinc-100 rounded-xl shadow-lg shadow-zinc-200/50 flex items-center gap-2">
         <div className="w-2 h-2 rounded-full bg-indigo-600" />
+
         <p className="text-sm font-black text-zinc-800">
           {payload[0].value}{" "}
-          <span className="text-xs text-zinc-500 font-semibold">دقیقه</span>
+          <span className="text-xs text-zinc-500 font-semibold">
+            دقیقه
+          </span>
         </p>
       </div>
     );
   }
+
   return null;
 };
 
 export default function StudyChart() {
   return (
-    <div className="h-60 w-full mt-4" dir="ltr">
+    <div
+      className="h-60 w-full mt-4 outline-none"
+      dir="ltr"
+      onMouseDown={(e) => {
+        e.currentTarget.blur();
+      }}
+    >
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={studyData}
@@ -56,28 +66,44 @@ export default function StudyChart() {
             dataKey="day"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#a1a1aa", fontSize: 12, fontWeight: "bold" }}
+            tick={{
+              fill: "#a1a1aa",
+              fontSize: 12,
+              fontWeight: "bold",
+            }}
             dy={10}
           />
 
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#a1a1aa", fontSize: 12, fontWeight: "bold" }}
+            tick={{
+              fill: "#a1a1aa",
+              fontSize: 12,
+              fontWeight: "bold",
+            }}
             dx={-10}
           />
 
           <Tooltip
             content={<CustomTooltip />}
-            cursor={{ fill: "#f4f4f5"}}
+            cursor={{ fill: "#f4f4f5" }}
           />
 
-          <Bar dataKey="value" radius={[6, 6, 0, 0]}>
+          <Bar
+            dataKey="value"
+            radius={[6, 6, 0, 0]}
+            isAnimationActive
+          >
             {studyData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={index === 5 ? "#4f46e5" : "#e4e4e7"}
-                className="transition-all duration-300 hover:opacity-80 cursor-pointer"
+                fill={
+                  index === 5
+                    ? "#4f46e5"
+                    : "#e4e4e7"
+                }
+                className="transition-all duration-300 hover:opacity-80 cursor-pointer outline-none"
               />
             ))}
           </Bar>

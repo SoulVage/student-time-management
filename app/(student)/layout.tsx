@@ -44,7 +44,7 @@ const Layout = ({ children, stats }: LayoutProps) => {
       </div>
 
       {/* Floating End Day Button + Dropdown */}
-      <div className="fixed bottom-6 left-4 z-50">
+      <div className="fixed bottom-10 left-10 z-50">
         {showEndDayModal && (
           <div className="absolute bottom-full left-0 mb-2 w-72 bg-white rounded-2xl shadow-lg border border-gray-200 p-5">
             <div className="flex items-center justify-between mb-4">

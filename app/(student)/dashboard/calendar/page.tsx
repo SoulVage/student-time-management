@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft, HelpCircle, Settings } from "lucide-react";
-import StudyLogModal from "@/components/StudyLogModal/StudyLogModal"; 
+import StudyLogModal from "@/components/StudyLogModal/StudyLogModal";
 
 type TaskType = "exam" | "study" | "class";
 
@@ -25,10 +25,9 @@ const mockTasks: Record<number, Task[]> = {
 
 const weekDays = ["شنبه", "یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه"];
 
-export default function StudentCalendar() {
+export default function ModernCalendar() {
   const [realToday, setRealToday] = useState<Date | null>(null);
   const [viewDate, setViewDate] = useState<Date | null>(null);
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDateForModal, setSelectedDateForModal] = useState("");
 
@@ -82,17 +81,17 @@ export default function StudentCalendar() {
 
   const getTaskColor = (type: TaskType) => {
     switch (type) {
-      case "exam": return "bg-rose-50 text-rose-700 border-rose-200 hover:bg-rose-100";
-      case "study": return "bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100";
-      case "class": return "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100";
-      default: return "bg-zinc-50 text-zinc-700 border-zinc-200 hover:bg-zinc-100";
+      case "exam": return "bg-rose-100 text-rose-800 border-rose-200 hover:bg-rose-200";
+      case "study": return "bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200";
+      case "class": return "bg-emerald-100 text-emerald-800 border-emerald-200 hover:bg-emerald-200";
+      default: return "bg-zinc-100 text-zinc-700 border-zinc-200 hover:bg-zinc-200";
     }
   };
 
   if (!viewDate || !realToday) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -122,15 +121,15 @@ export default function StudentCalendar() {
   for (let i = 1; i <= remaining; i++) { cells.push({ dayNumber: i, isCurrentMonth: false, isToday: false, tasks: [] }); }
 
   return (
-    <div className="flex flex-col gap-6 p-6 h-full">
-      <header className="h-16 border-b border-zinc-100 flex items-center justify-between px-6 bg-white shrink-0 rounded-xl shadow-sm">
+    <div className="flex flex-col gap-4 p-4 h-full">
+      <header className="h-20 flex items-center justify-between px-4 bg-white shrink-0 rounded-xl">
         <div className="flex items-center gap-6">
-          <button onClick={goToToday} className="border border-zinc-200 hover:bg-zinc-50 rounded-lg px-4 py-1.5 text-xs font-bold text-zinc-700 transition-colors">باز کردن امروز</button>
+          <button onClick={goToToday} className="bg-[#4F39F6] text-white rounded-full px-4 py-3 text-xs font-bold transition-colors">باز کردن امروز</button>
           <div className="flex items-center gap-2 text-zinc-500">
             <button onClick={prevMonth} className="p-1.5 hover:bg-zinc-100 rounded-full transition-colors"><ChevronRight className="w-5 h-5" /></button>
             <button onClick={nextMonth} className="p-1.5 hover:bg-zinc-100 rounded-full transition-colors"><ChevronLeft className="w-5 h-5" /></button>
           </div>
-          <h1 className="text-xl font-black text-zinc-800">{getMonthYearFa(viewDate)}</h1>
+          <h1 className="text-lg font-bold text-zinc-700">{getMonthYearFa(viewDate)}</h1>
         </div>
         <div className="flex items-center gap-4 text-zinc-500">
           <button className="p-2 hover:bg-zinc-100 rounded-full transition-colors"><HelpCircle className="w-5 h-5" /></button>
@@ -138,11 +137,11 @@ export default function StudentCalendar() {
         </div>
       </header>
       
-      <main className="flex-1 flex flex-col overflow-hidden rounded-xl border border-zinc-100 shadow-sm bg-zinc-50">
-        <div className="grid grid-cols-7 border-b border-zinc-100 bg-white shrink-0">
+      <main className="flex-1 flex flex-col overflow-hidden rounded-xl bg-white">
+        <div className="grid grid-cols-7 border-b border-black/6 bg-white shrink-0">
           {weekDays.map((day) => (
-            <div key={day} className="py-3 text-center border-l border-zinc-100 last:border-l-0">
-              <span className="text-[11px] font-black text-zinc-400 uppercase tracking-wider">{day}</span>
+            <div key={day} className="py-2.5 text-center">
+              <span className="text-[10px] font-bold text-zinc-500 uppercase">{day}</span>
             </div>
           ))}
         </div>
@@ -160,18 +159,18 @@ export default function StudentCalendar() {
                    setSelectedDateForModal(`${year}/${month}/${day}`);
                    setIsModalOpen(true);
                 }}
-                className={`border-b border-l border-zinc-100 bg-white p-2 transition-colors flex flex-col gap-1 min-h-[120px] overflow-hidden cursor-pointer ${
-                  !cell.isCurrentMonth ? "bg-zinc-50/50 opacity-60" : "hover:bg-zinc-50"
+                className={`border-b border-l border-black/6 bg-white p-1.5 transition-colors flex flex-col gap-0.5 min-h-[100px] overflow-hidden cursor-pointer ${
+                  !cell.isCurrentMonth ? "bg-zinc-100/50 opacity-70" : "hover:bg-[#4F39F6]/4"
                 }`}
               >
                 <div className="flex justify-center mt-1 shrink-0">
-                  <span className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-all ${cell.isToday ? "bg-orange-500 text-white shadow-lg shadow-orange-500/40" : cell.isCurrentMonth ? "text-zinc-700" : "text-zinc-300"}`}>
+                  <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold transition-all ${cell.isToday ? "bg-[#4F39F6] text-white shadow" : cell.isCurrentMonth ? "text-zinc-600" : "text-zinc-300"}`}>
                     {cell.dayNumber}
                   </span>
                 </div>
                 <div className="flex-1 flex flex-col gap-1 overflow-y-auto mt-2 pr-1 pb-1">
                   {cell.tasks.map((task) => (
-                    <div key={task.id} className={`px-2 py-1.5 rounded-md border text-[10px] font-bold cursor-pointer truncate flex items-center gap-1.5 shrink-0 ${getTaskColor(task.type)}`} title={task.title}>
+                    <div key={task.id} className={`px-2 py-1.5 rounded-md text-[10px] font-bold cursor-pointer truncate flex items-center gap-1.5 shrink-0 ${getTaskColor(task.type)}`} title={task.title}>
                       {task.time ? <span className="shrink-0 flex items-center gap-0.5 opacity-80"><span className="w-1.5 h-1.5 rounded-full bg-current" />{task.time}</span> : null}
                       <span className="truncate">{task.title}</span>
                     </div>
@@ -184,9 +183,9 @@ export default function StudentCalendar() {
       </main>
 
       <StudyLogModal 
-         isOpen={isModalOpen} 
-         onClose={() => setIsModalOpen(false)} 
-         selectedDate={selectedDateForModal}
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        selectedDate={selectedDateForModal}
       />
     </div>
   );

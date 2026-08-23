@@ -175,7 +175,7 @@ const Card = ({
 
 const Badge = ({
   children,
-  colorClass = "bg-indigo-50 text-indigo-600",
+  colorClass = "bg-gray-100 text-gray-600",
 }: {
   children: ReactNode;
   colorClass?: string;
@@ -203,7 +203,9 @@ function QualityStars({
           key={n}
           type="button"
           onClick={() => onChange(n)}
-          className={`transition-all duration-200 hover:scale-110 ${n <= value ? QUALITY_COLORS[value] : "text-gray-300"}`}
+          className={`transition-all duration-200 hover:scale-110 ${
+            n <= value ? QUALITY_COLORS[value] : "text-gray-300"
+          }`}
         >
           <Star
             size={size}
@@ -213,7 +215,9 @@ function QualityStars({
         </button>
       ))}
       <span
-        className={`text-sm font-bold ml-2 ${QUALITY_COLORS[value] || "text-gray-400"}`}
+        className={`text-sm font-bold ml-2 ${
+          QUALITY_COLORS[value] || "text-gray-400"
+        }`}
       >
         {QUALITY_MAP[value]}
       </span>
@@ -254,7 +258,7 @@ function TagSelector({
             }}
             className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
               selected
-                ? "bg-indigo-500 text-white"
+                ? "bg-[#4F39F6] text-white"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800"
             }`}
           >
@@ -279,7 +283,7 @@ function ReviewTick({
       onClick={onClick}
       className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
         checked
-          ? "bg-indigo-500 text-white"
+          ? "bg-[#4F39F6] text-white"
           : "bg-gray-100 text-gray-300 hover:bg-gray-200"
       }`}
     >
@@ -288,9 +292,15 @@ function ReviewTick({
   );
 }
 
-function FixedBottomReviewBar({ yesterdayReviewed, toggleYesterdayReview }) {
+function FixedBottomReviewBar({
+  yesterdayReviewed,
+  toggleYesterdayReview,
+}: {
+  yesterdayReviewed: boolean[];
+  toggleYesterdayReview: (n: number) => void;
+}) {
   return (
-    <div className="w-full z-50 bg-white h-18 flex items-center px-6 border-t border-black/6">
+    <div className="w-full z-50 bg-white flex items-center py-5 px-6 border-t border-black/6">
       <div className="flex items-center gap-6 overflow-x-auto w-full">
         <div className="flex items-center gap-2 shrink-0">
           <RotateCcw size={18} className="text-gray-900" />
@@ -308,7 +318,7 @@ function FixedBottomReviewBar({ yesterdayReviewed, toggleYesterdayReview }) {
                 onClick={() => toggleYesterdayReview(n)}
                 className={`w-11 h-11 rounded-md flex flex-col items-center justify-center transition-none border shrink-0 ${
                   checked
-                    ? "bg-[#615FFF] border-[#615FFF] text-white"
+                    ? "bg-[#4F39F6] border-[#4F39F6] text-white"
                     : "bg-gray-50 border-white text-gray-500 hover:bg-gray-100"
                 }`}
               >
@@ -359,9 +369,9 @@ function RegisterWizard({
               key={s.id}
               className={`rounded-full transition-all duration-500 ${
                 i + 1 === wizardStep
-                  ? "w-3 h-3 bg-indigo-500"
+                  ? "w-3 h-3 bg-[#4F39F6]"
                   : i + 1 < wizardStep
-                    ? "w-2 h-2 bg-indigo-300"
+                    ? "w-2 h-2 bg-[#4F39F6]/40"
                     : "w-2 h-2 bg-gray-200"
               }`}
             />
@@ -388,7 +398,7 @@ function RegisterWizard({
                   type="time"
                   value={form.startTime}
                   onChange={(e) => updateForm("startTime", e.target.value)}
-                  className="bg-gray-100 rounded-2xl px-6 py-4 text-2xl text-center focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none w-40 transition-all"
+                  className="bg-gray-100 rounded-2xl px-6 py-4 text-2xl text-center focus:bg-white focus:ring-2 focus:ring-[#4F39F6] outline-none w-40 transition-all"
                 />
               </div>
               <div className="text-gray-400 font-bold text-2xl mt-8">-</div>
@@ -400,7 +410,7 @@ function RegisterWizard({
                   type="time"
                   value={form.endTime}
                   onChange={(e) => updateForm("endTime", e.target.value)}
-                  className="bg-gray-100 rounded-2xl px-6 py-4 text-2xl text-center focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none w-40 transition-all"
+                  className="bg-gray-100 rounded-2xl px-6 py-4 text-2xl text-center focus:bg-white focus:ring-2 focus:ring-[#4F39F6] outline-none w-40 transition-all"
                 />
               </div>
             </div>
@@ -428,7 +438,7 @@ function RegisterWizard({
                     value={form.topic}
                     onChange={(e) => updateForm("topic", e.target.value)}
                     placeholder="مثلا: سینماتیک"
-                    className="w-full bg-gray-100 rounded-xl px-5 py-3.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all placeholder:text-gray-400"
+                    className="w-full bg-gray-100 rounded-xl px-5 py-3.5 focus:bg-white focus:ring-2 focus:ring-[#4F39F6] outline-none transition-all placeholder:text-gray-400"
                   />
                 </div>
                 <div>
@@ -440,7 +450,7 @@ function RegisterWizard({
                     value={form.tests}
                     onChange={(e) => updateForm("tests", e.target.value)}
                     placeholder="0"
-                    className="w-full bg-gray-100 rounded-xl px-5 py-3.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all placeholder:text-gray-400"
+                    className="w-full bg-gray-100 rounded-xl px-5 py-3.5 focus:bg-white focus:ring-2 focus:ring-[#4F39F6] outline-none transition-all placeholder:text-gray-400"
                   />
                 </div>
               </div>
@@ -461,7 +471,7 @@ function RegisterWizard({
                       onClick={() => updateForm("difficulty", d)}
                       className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${
                         form.difficulty === d
-                          ? "bg-indigo-500 text-white"
+                          ? "bg-[#4F39F6] text-white"
                           : "text-gray-500 hover:text-gray-700"
                       }`}
                     >
@@ -524,12 +534,16 @@ function RegisterWizard({
                       }`}
                     >
                       <div
-                        className={`text-sm font-black mb-1 ${selected ? "text-purple-100" : "text-gray-400"}`}
+                        className={`text-sm font-black mb-1 ${
+                          selected ? "text-purple-100" : "text-gray-400"
+                        }`}
                       >
                         گام {step.num}
                       </div>
                       <div
-                        className={`font-bold text-lg ${selected ? "text-white" : "text-gray-700"}`}
+                        className={`font-bold text-lg ${
+                          selected ? "text-white" : "text-gray-700"
+                        }`}
                       >
                         {step.label}
                       </div>
@@ -562,7 +576,7 @@ function RegisterWizard({
                   value={form.notes}
                   onChange={(e) => updateForm("notes", e.target.value)}
                   placeholder="نکته خاصی هست؟"
-                  className="w-full bg-gray-100 rounded-xl px-5 py-4 focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all placeholder:text-gray-400"
+                  className="w-full bg-gray-100 rounded-xl px-5 py-4 focus:bg-white focus:ring-2 focus:ring-[#4F39F6] outline-none transition-all placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -587,7 +601,7 @@ function RegisterWizard({
               type="button"
               onClick={() => setWizardStep(wizardStep + 1)}
               disabled={!canProceed()}
-              className="px-8 py-3 rounded-xl font-bold text-white bg-indigo-500 hover:bg-indigo-600 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              className="px-8 py-3 rounded-xl font-bold text-white bg-[#4F39F6] hover:bg-[#3F2FD4] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             >
               ادامه
             </button>
@@ -644,73 +658,85 @@ function SummaryView({
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         <Card className="p-6 text-center">
-          <Clock size={24} className="text-indigo-500 mx-auto mb-3" />
-          <div className="text-2xl font-black text-indigo-600">
+          <Clock size={24} className="text-blue-500 mx-auto mb-3" />
+          <div className="text-2xl font-black text-gray-900">
             {formatMinutes(totalMin)}
           </div>
           <div className="text-sm text-gray-500 mt-1">زمان مطالعه</div>
         </Card>
         <Card className="p-6 text-center">
-          <Target size={24} className="text-blue-500 mx-auto mb-3" />
-          <div className="text-2xl font-black text-blue-600">
+          <Target size={24} className="text-emerald-500 mx-auto mb-3" />
+          <div className="text-2xl font-black text-gray-900">
             {parts.length}
           </div>
           <div className="text-sm text-gray-500 mt-1">تعداد پارت</div>
         </Card>
         <Card className="p-6 text-center">
-          <BookOpen size={24} className="text-emerald-500 mx-auto mb-3" />
-          <div className="text-2xl font-black text-emerald-600">
+          <BookOpen size={24} className="text-amber-500 mx-auto mb-3" />
+          <div className="text-2xl font-black text-gray-900">
             {totalTests}
           </div>
           <div className="text-sm text-gray-500 mt-1">مجموع تست</div>
         </Card>
         <Card className="p-6 text-center">
-          <Star size={24} className="text-amber-500 mx-auto mb-3" />
-          <div className="text-2xl font-black text-amber-600">
+          <Star size={24} className="text-rose-500 mx-auto mb-3" />
+          <div className="text-2xl font-black text-gray-900">
             {avgQuality} / ۵
           </div>
           <div className="text-sm text-gray-500 mt-1">میانگین کیفیت</div>
         </Card>
       </div>
 
-{subjectStats.length === 0 ? (
-  <Card className="p-16 text-center">
-    <div className="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-      <Zap size={32} />
-    </div>
-    <h3 className="text-xl font-bold text-gray-900 mb-2">هنوز پارتی ثبت نشده</h3>
-    <p className="text-gray-500">برای دیدن جدول مجموع، اول یک پارت ثبت کن.</p>
-  </Card>
-) : (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {subjectStats.map((row) => {
-      const reviews = subjectReviews[row.subject] || [];
-      return (
-        <Card key={row.subject} className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h3 className="font-bold text-gray-900 text-lg">{row.subject}</h3>
-              <p className="text-sm text-gray-400">{formatMinutes(row.totalMinutes)}</p>
-            </div>
-            <Badge>{row.count} پارت</Badge>
+      {subjectStats.length === 0 ? (
+        <Card className="p-16 text-center">
+          <div className="w-16 h-16 bg-gray-100 text-gray-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Zap size={32} />
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-500">مرورها:</span>
-            <div className="flex gap-2">
-              {[1, 2, 3].map((cycle) => (
-                <ReviewTick
-                  key={cycle}
-                  checked={reviews.includes(cycle)}
-                  onClick={() => toggleSubjectReview(row.subject, cycle)}
-                />
-              ))}
-            </div>
-          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">
+            هنوز پارتی ثبت نشده
+          </h3>
+          <p className="text-gray-500">
+            برای دیدن جدول مجموع، اول یک پارت ثبت کن.
+          </p>
         </Card>
-      );
-    })}
-  </div>
-)}
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {subjectStats.map((row) => {
+            const reviews = subjectReviews[row.subject] || [];
+            return (
+              <Card key={row.subject} className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-lg">
+                      {row.subject}
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      {formatMinutes(row.totalMinutes)}
+                    </p>
+                  </div>
+                  <Badge colorClass="bg-gray-100 text-gray-600">
+                    {row.count} پارت
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-gray-500">مرورها:</span>
+                  <div className="flex gap-2">
+                    {[1, 2, 3].map((cycle) => (
+                      <ReviewTick
+                        key={cycle}
+                        checked={reviews.includes(cycle)}
+                        onClick={() =>
+                          toggleSubjectReview(row.subject, cycle)
+                        }
+                      />
+                    ))}
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -755,7 +781,7 @@ function ActionsView({
         </Card>
 
         <Card className="p-6">
-          <div className="flex items-center gap-2 text-indigo-500 text-sm font-bold mb-4">
+          <div className="flex items-center gap-2 text-blue-500 text-sm font-bold mb-4">
             <Calendar size={18} />
             پیش‌خوانی فردا
           </div>
@@ -764,20 +790,6 @@ function ActionsView({
             value={dayData.tomorrowPreviews}
             onChange={(v) => updateDayData("tomorrowPreviews", v)}
             multi
-          />
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center gap-2 text-emerald-500 text-sm font-bold mb-4">
-            <Sparkles size={18} />
-            روتین امروز
-          </div>
-          <input
-            type="text"
-            value={dayData.todayRoutine}
-            onChange={(e) => updateDayData("todayRoutine", e.target.value)}
-            placeholder="روتین امروز رو بنویس..."
-            className="w-full bg-gray-50 rounded-2xl px-5 py-4 text-sm focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none transition-all placeholder:text-gray-400"
           />
         </Card>
       </div>
@@ -883,7 +895,7 @@ export default function App() {
 
   return (
     <div className="text-gray-900 h-full relative overflow-hidden" dir="rtl">
-      <header className="sticky top-0 z-40 bg-white border-b border-black/7 px-6 pt-4">
+      <header className="sticky top-0 z-40 bg-white border-b border-black/7 px-6 pt-6">
         <div className="mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <nav className="flex items-center gap-6">
             {tabs.map((tab) => (
@@ -891,9 +903,9 @@ export default function App() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`pb-4 text-sm font-bold transition-colors border-b-2 ${
+                className={`pb-6 text-sm font-bold transition-colors border-b-2 ${
                   activeTab === tab.id
-                    ? "border-indigo-600 text-indigo-600"
+                    ? "border-[#4F39F6] text-[#4F39F6]"
                     : "border-transparent text-gray-500 hover:text-gray-900"
                 }`}
               >
@@ -904,7 +916,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="w-full mx-auto px-6 py-8 pb-8 h-[calc(100vh-14.6rem)] overflow-auto">
+      <main className="w-full mx-auto px-6 py-8 pb-8 h-[calc(100vh-16.25rem)] overflow-auto">
         {activeTab === "register" && (
           <RegisterWizard
             form={form}

@@ -7,7 +7,6 @@ import {
   BookOpen,
   GraduationCap,
   Flame,
-  ArrowUpRight,
   LogOut,
   X,
 } from "lucide-react";
@@ -46,11 +45,11 @@ export default function SidebarFloatingModel({ isOpen, onClose }: SidebarProps) 
         isOpen ? "translate-x-0" : "translate-x-full"
       } md:translate-x-0`}
     >
-      <div className="flex h-full flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 ">
+      <div className="flex h-full flex-col justify-between rounded-lg border border-gray-100 bg-white p-4">
         <div className="space-y-6">
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-emerald-500" />
+              <div className="h-2 w-2 rounded-full bg-[#4F39F6]" />
               <span className="text-xs font-black text-zinc-800">پنل مطالعه</span>
             </div>
             <button
@@ -61,7 +60,7 @@ export default function SidebarFloatingModel({ isOpen, onClose }: SidebarProps) 
             </button>
           </div>
 
-          <nav className="space-y-1">
+          <nav className="space-y-3">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -70,12 +69,16 @@ export default function SidebarFloatingModel({ isOpen, onClose }: SidebarProps) 
                   href={item.href}
                   className={`flex items-center justify-between rounded-2xl px-4 py-3 text-xs font-bold transition-all ${
                     isActive
-                      ? "bg-zinc-900 text-white shadow-md shadow-zinc-900/10"
-                      : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900"
+                      ? "bg-[#4F39F6]/7 text-[#4F39F6]"
+                      : "text-zinc-600 hover:bg-gray-100/80 hover:text-gray-900"
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <item.icon className={`h-4 w-4 ${isActive ? "text-white" : "text-zinc-400"}`} />
+                    <item.icon
+                      className={`h-4 w-4 ${
+                        isActive ? "text-[#4F39F6]" : "text-zinc-400"
+                      }`}
+                    />
                     <span>{item.name}</span>
                   </div>
 
@@ -83,7 +86,7 @@ export default function SidebarFloatingModel({ isOpen, onClose }: SidebarProps) 
                     <span
                       className={`text-[9px] px-2.5 py-0.5 rounded-full font-black ${
                         isActive
-                          ? "bg-zinc-800 text-zinc-200"
+                          ? "bg-[#4F39F6]/20 text-[#4F39F6]"
                           : item.count === "جدید"
                           ? "bg-orange-100 text-orange-600"
                           : "bg-zinc-100 text-zinc-600"
@@ -98,7 +101,6 @@ export default function SidebarFloatingModel({ isOpen, onClose }: SidebarProps) 
           </nav>
         </div>
 
-        {/* بخش استریک کپسولی */}
         <div className="space-y-3">
           <div className="rounded-2xl bg-orange-50/60 p-4 border border-orange-100">
             <div className="flex items-center justify-between">
